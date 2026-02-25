@@ -45,7 +45,7 @@ const client = new Client({
     authStrategy: new LocalAuth({ clientId: "bbb-siscom-mvp" }),
     // Important for running on cloud environments (Render/Railway)
     puppeteer: {
-        executablePath: puppeteer.executablePath(),
+        executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || puppeteer.executablePath(),
         args: ['--no-sandbox', '--disable-setuid-sandbox']
     }
 });
