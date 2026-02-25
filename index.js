@@ -44,6 +44,7 @@ const puppeteer = require('puppeteer');
 const client = new Client({
     authStrategy: new LocalAuth({ clientId: "bbb-siscom-mvp" }),
     // Important for running on cloud environments (Render/Railway)
+    authTimeoutMs: 120000,
     puppeteer: {
         executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || puppeteer.executablePath(),
         args: [
@@ -55,7 +56,8 @@ const client = new Client({
             '--no-zygote',
             '--disable-gpu',
             '--single-process'
-        ]
+        ],
+        timeout: 120000
     }
 });
 
