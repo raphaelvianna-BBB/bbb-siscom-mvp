@@ -39,10 +39,13 @@ app.listen(PORT, () => {
 // ==========================================
 // 3. WHATSAPP CLIENT SETUP
 // ==========================================
+const puppeteer = require('puppeteer');
+
 const client = new Client({
     authStrategy: new LocalAuth({ clientId: "bbb-siscom-mvp" }),
     // Important for running on cloud environments (Render/Railway)
     puppeteer: {
+        executablePath: puppeteer.executablePath(),
         args: ['--no-sandbox', '--disable-setuid-sandbox']
     }
 });
