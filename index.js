@@ -59,12 +59,17 @@ const client = new Client({
     }
 });
 
-// Generate QR Code internally or terminal
+// Generate QR Code via URL instead of terminal
 client.on('qr', (qr) => {
     console.log('\n=========================================');
     console.log('🤖 ESCANEAR QR CODE PARA CONECTAR WHATSAPP');
     console.log('=========================================\n');
-    qrcode.generate(qr, { small: true });
+    console.log('Abra este link no seu navegador para ver o QR Code:');
+
+    // Using quickchart.io to generate a clean, scannable QR Code image URL
+    const qrUrl = `https://quickchart.io/qr?text=${encodeURIComponent(qr)}&size=300`;
+    console.log(`👉 ${qrUrl}\n`);
+    console.log('=========================================\n');
 });
 
 client.on('ready', () => {
